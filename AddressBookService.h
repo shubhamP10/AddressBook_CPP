@@ -1,5 +1,5 @@
 #include <iostream>
-#include <list>
+#include <vector>
 #include "Person.h"
 
 using namespace std;
@@ -7,17 +7,17 @@ using namespace std;
 class AddressBookService
 {   
     public:
-        list<Person> personList;
+        vector<Person> personList;
         void addRecord();
         void displayRecord();
+        void editRecord();
         Person readInputsForAdd();
 
 };
 
 Person AddressBookService::readInputsForAdd() {
-    string fname, lname, address, city, state;
-    int zip;
-    long long phone;
+    
+    string fname, lname, address, city, state, zip, phone;
 
     cout << "Enter First Name: ";
     cin >> fname;
@@ -54,4 +54,68 @@ void AddressBookService::displayRecord() {
     else {
         cout << "\nNo Records Found!!!\n";
     } 
+}
+
+int createEditMenu() {
+    int choice;
+    cout << "Select What You Want To Edit:" << endl;
+    cout << "1. Address\n2. City\n3. State\n4. Zip\n5. Phone\n6. <- Back To Main Menu\n\tEnter Your Choice" << endl;
+    cin >> choice;
+    return choice;
+}
+
+void AddressBookService::editRecord() {
+    
+    int flag = 0, id = 0, selected;
+    string newAddress, newCity, newState, newZip, newPhone;
+
+    for (Person person : personList) {
+        cout << "#ID: " << id << " ";
+        person.display();
+        id++;
+    }
+
+    cout << "Enter ID to Edit Details: ";
+    cin >> selected;
+
+    while(flag == 0) {
+        int choice = createEditMenu();
+
+        switch(choice) {
+            case 1: 
+                cout << "\nEnter New Address" << endl;
+                cin >> newAddress;
+                personList[selected].setAddress(newAddress);
+                personList[selected].display();
+                break;
+            case 2:
+                cout << "\nEnter New City" << endl;
+                cin >> newCity;
+                personList[selected].setCity(newCity);
+                personList[selected].display();
+                break;
+            case 3:
+                cout << "\nEnter New State" << endl;
+                cin >> newState;
+                personList[selected].setState(newState);
+                personList[selected].display();
+                break;
+            case 4:
+                cout << "\nEnter New Zip" << endl;
+                cin >> newZip;
+                personList[selected].setZip(newZip);
+                personList[selected].display();
+                break;
+            case 5:
+                cout << "\nEnter New Phone" << endl;
+                cin >> newPhone;
+                personList[selected].setPhone(newPhone);
+                personList[selected].display();
+                break;
+            case 6:
+                flag = 1;
+            default:
+                cout << "\nEnter Valid Choice\n";
+        }
+    }
 }
