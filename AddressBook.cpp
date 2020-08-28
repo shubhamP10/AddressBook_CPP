@@ -1,40 +1,39 @@
 #include <iostream>
+#include "AddressBookService.h"
 
 using namespace std;
 
-class Person {
-    string firstName, lastName, address, city, state;
-    int zip;
-    long long phone;
-    public:
-        Person(string fName, string lName, string address, string city, string state, int zip, long long phone);
-        void display();
-};
-
-Person::Person(string fName, string lName, string address, string city, string state, int zip, long long phone) {
-    this->firstName = fName;
-    this->lastName = lName;
-    this->address = address;
-    this->city = city;
-    this->state = state;
-    this->zip = zip;
-    this->phone = phone;
-}
-
-void Person::display() {
-    cout << "Name: " << this->firstName << " " << this->lastName << endl;
-    cout << "Phone: " << this->phone << "\nState: " << this->state << endl;
-}
-
 void displayWelcomeMessage() {
-    cout << "Welcome To Address Book Management" << endl;
+    cout << "---- Welcome To Address Book Management ----" << endl;
+}
+
+void createMenu() {
+    int flag = 0;
+    AddressBookService service;
+
+    while(flag == 0) {
+        cout << "\n1. Add Person Details\n2. Display\n3. Exit\n\tEnter Your Choice " << endl;
+        int choice;
+        cin >> choice;
+        switch(choice) {
+            case 1: 
+                service.addRecord();
+                break;
+            case 2:
+                service.displayRecord();
+                break;
+            case 3:
+                flag = 1;
+                break;
+            default:
+                cout << "Enter Valid Choice\n";
+        }
+    }
 }
 
 int main() {
 
     displayWelcomeMessage();
-    Person person("Shubham", "Pattar", "BG", "JKD", "KA", 587301, 8105215414);
-    person.display();
-
+    createMenu();
     return 0;
 }
