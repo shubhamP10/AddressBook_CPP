@@ -12,6 +12,7 @@ class AddressBookService
         void displayRecord();
         void editRecord();
         void deleteRecord();
+        void sortRecords();
         Person readInputsForAdd(); 
         bool checkExists(string fname, string lname);
 };
@@ -77,7 +78,7 @@ void AddressBookService::displayRecord() {
 int createEditMenu() {
     int choice;
     cout << "Select What You Want To Edit:" << endl;
-    cout << "1. Address\n2. City\n3. State\n4. Zip\n5. Phone\n6. <- Back To Main Menu\nEnter Your Choice" << endl;
+    cout << "1. Address\n2. City\n3. State\n4. Zip\n5. Phone\n6. Save And Exit\nEnter Your Choice" << endl;
     cin >> choice;
     return choice;
 }
@@ -148,6 +149,7 @@ void AddressBookService::deleteRecord() {
     cin >> lname;
 
     auto person = personList.begin();
+    
     while(person != personList.end()) {
         auto currentPerson = person++;
         if (fname == (*currentPerson).getFirstName() && lname == (*currentPerson).getLastName()) {
@@ -163,4 +165,17 @@ void AddressBookService::deleteRecord() {
     else {
         cout << "...Match Not Found...!" << endl;
     }
+}
+
+void AddressBookService::sortRecords() {
+
+    for(int i = 0; i <= personList.size(); i++) {
+        for(int j = 0; j <= (personList.size() - i + 1); j++) {
+            if(personList[i].getFirstName() > personList[j].getFirstName()) {
+                swap(personList[i], personList[j]);
+            }
+        }
+    }
+
+    displayRecord();
 }
