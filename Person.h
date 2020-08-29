@@ -6,6 +6,7 @@ class Person {
     public:
         Person(){}
         Person(string fName, string lName, string address, string city, string state, string zip, string phone);
+        
         void display();
 
         void setAddress(string address);

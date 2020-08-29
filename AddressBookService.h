@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
 #include "Person.h"
 
 using namespace std;
@@ -14,15 +13,34 @@ class AddressBookService
         void editRecord();
         void deleteRecord();
         Person readInputsForAdd(); 
+        bool checkExists(string fname, string lname);
 };
+
+bool AddressBookService::checkExists(string fname, string lname) {
+    
+    for(Person person : personList) {
+        if(fname == person.getFirstName() && lname == person.getLastName()) {
+            return true;
+        }
+    }
+
+    return false;
+}
 
 Person AddressBookService::readInputsForAdd() {
     string fname, lname, address, city, state, zip, phone;
 
-    cout << "Enter First Name: ";
-    cin >> fname;
-    cout << "Enter Last Name: ";
-    cin >> lname;
+    while(true) {
+        cout << "Enter First Name: ";
+        cin >> fname;
+        cout << "Enter Last Name: ";
+        cin >> lname;
+
+        if(checkExists(fname, lname) == false)
+            break;
+        cout << "Person Already Exists!!! Please Enter Different Name" << endl;
+    }
+    
     cout << "Enter Address: ";
     cin >> address;
     cout << "Enter City: ";
