@@ -30,9 +30,9 @@ Person::Person(string fName, string lName, string address, string city, string s
 }
 
 void Person::display() {
-    cout << "{ Name: " << this->firstName << " " << this->lastName;
+    cout << "[ Name: " << this->firstName << " " << this->lastName;
     cout << ", Phone: " << this->phone << ", State: " << this->state << ", ";
-    cout << "Address: " << this->address << ", City: " << this->city << ", Zip: " << this->zip << " }" << endl;
+    cout << "Address: " << this->address << ", City: " << this->city << ", Zip: " << this->zip << " ]" << endl;
 }
 
 void Person::setAddress(string address) {

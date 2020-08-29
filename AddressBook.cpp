@@ -12,7 +12,7 @@ void createMenu() {
     AddressBookService service;
 
     while(flag == 0) {
-        cout << "\n1. Add Person Details\n2. Display\n3. Edit Person Details\n4. Delete Record\n5. Exit\n\tEnter Your Choice " << endl;
+        cout << "\n1. Add Person Details\n2. Display\n3. Edit Person Details\n4. Delete Record\n5. Exit\nEnter Your Choice " << endl;
         int choice;
         cin >> choice;
         switch(choice) {

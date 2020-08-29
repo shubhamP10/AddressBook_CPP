@@ -77,7 +77,7 @@ void AddressBookService::displayRecord() {
 int createEditMenu() {
     int choice;
     cout << "Select What You Want To Edit:" << endl;
-    cout << "1. Address\n2. City\n3. State\n4. Zip\n5. Phone\n6. <- Back To Main Menu\n\tEnter Your Choice" << endl;
+    cout << "1. Address\n2. City\n3. State\n4. Zip\n5. Phone\n6. <- Back To Main Menu\nEnter Your Choice" << endl;
     cin >> choice;
     return choice;
 }
