@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 #include "Person.h"
 
 using namespace std;
@@ -11,12 +12,11 @@ class AddressBookService
         void addRecord();
         void displayRecord();
         void editRecord();
-        Person readInputsForAdd();
-
+        void deleteRecord();
+        Person readInputsForAdd(); 
 };
 
 Person AddressBookService::readInputsForAdd() {
-    
     string fname, lname, address, city, state, zip, phone;
 
     cout << "Enter First Name: ";
@@ -65,7 +65,6 @@ int createEditMenu() {
 }
 
 void AddressBookService::editRecord() {
-    
     int flag = 0, id = 0, selected;
     string newAddress, newCity, newState, newZip, newPhone;
 
@@ -115,7 +114,35 @@ void AddressBookService::editRecord() {
             case 6:
                 flag = 1;
             default:
-                cout << "\nEnter Valid Choice\n";
+                cout << "Enter Valid Choice\n";
         }
+    }
+}
+
+void AddressBookService::deleteRecord() {
+    string fname, lname;
+    int position = 0;
+    bool deleted = false;
+
+    cout << "Enter First Name: ";
+    cin >> fname;
+    cout << "Enter Last Name: ";
+    cin >> lname;
+
+    auto person = personList.begin();
+    while(person != personList.end()) {
+        auto currentPerson = person++;
+        if (fname == (*currentPerson).getFirstName() && lname == (*currentPerson).getLastName()) {
+            personList.erase(currentPerson);
+            deleted = true;
+            break;
+        }
+    }
+
+    if(deleted == true) {
+        cout << "...Record Deleted Successfully..." << endl;
+    } 
+    else {
+        cout << "...Match Not Found...!" << endl;
     }
 }

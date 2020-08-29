@@ -13,6 +13,9 @@ class Person {
         void setState(string state);
         void setZip(string zip);
         void setPhone(string phone);
+
+        string getFirstName();
+        string getLastName();
 };
 
 Person::Person(string fName, string lName, string address, string city, string state, string zip, string phone) {
@@ -49,4 +52,12 @@ void Person::setZip(string zip) {
 
 void Person::setPhone(string phone) {
     this->phone = phone;
+}
+
+string Person::getFirstName() {
+    return this->firstName;
+}
+
+string Person::getLastName() {
+    return this->lastName;
 }
