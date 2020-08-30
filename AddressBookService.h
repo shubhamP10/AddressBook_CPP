@@ -162,10 +162,10 @@ void AddressBookService::deleteRecord() {
     }
 
     if(deleted == true) {
-        cout << "...Record Deleted Successfully..." << endl;
+        cout << "\n...Record Deleted Successfully..." << endl;
     } 
     else {
-        cout << "...Match Not Found...!" << endl;
+        cout << "\n...Match Not Found...!" << endl;
     }
 }
 
@@ -257,7 +257,36 @@ void AddressBookService::viewByCityAndState() {
         }
     }
     else
-        cout << "No Records!!!" << endl;    
+        cout << "\nNo Records!!!" << endl;    
+}
+
+void searchBy(string searchBy, vector<Person> personList) {
+    string searchItem;
+    
+    cout << "Enter " << searchBy << " Name" << endl;
+    cin >> searchItem;
+
+    if(personList.size() != 0) {
+        if(searchBy == "city") {
+            for(Person person: personList) {
+                if(searchItem == person.getCity()) {
+                    person.display();
+                }
+            }
+        }
+        if (searchBy == "state") {
+            for(Person person: personList) {
+                if(searchItem == person.getState()) {
+                    person.display();
+                }
+            }
+        }
+    }
+    else
+        cout << "\nNo Records!!!" << endl;
+
+    
+
 }
 
 void AddressBookService::searchByCityOrState() {
@@ -269,14 +298,10 @@ void AddressBookService::searchByCityOrState() {
 
     switch(choice) {
         case 1:
-            cout << "Enter City Name: " << endl;
-            cin >> city;
-
-            for(Person person: personList) {
-                if(city == person.getCity()) {
-                    person.display();
-                }
-            }
+            searchBy("city", personList);
+            break;
+        case 2:
+            searchBy("state", personList);
             break;
         default:
             cout << "Enter Valid Choice" << endl;
