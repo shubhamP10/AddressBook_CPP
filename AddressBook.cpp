@@ -12,7 +12,8 @@ void createMenu() {
     AddressBookService service;
 
     while(flag == 0) {
-        cout << "\n1. Add Person Details\n2. Display\n3. Edit Person Details\n4. Delete Record\n5. Sort Records\n6. View By City And State\n7. Exit\nEnter Your Choice " << endl;
+        cout << "\n1. Add Person Details\n2. Display\n3. Edit Person Details\n4. Delete Record\n";
+        cout << "5. Sort Records\n6. View By City And State\n7. Search\n8. Exit\nEnter Your Choice " << endl;
         int choice;
         cin >> choice;
         switch(choice) {
@@ -35,6 +36,9 @@ void createMenu() {
                 service.viewByCityAndState();
                 break;
             case 7:
+                service.searchByCityOrState();
+                break;
+            case 8:
                 flag = 1;
                 break;
             default:

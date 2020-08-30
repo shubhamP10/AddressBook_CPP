@@ -14,6 +14,7 @@ class AddressBookService
         void deleteRecord();
         void sortRecords();
         void viewByCityAndState();
+        void searchByCityOrState();
         Person readInputsForAdd(); 
         bool checkExists(string fname, string lname);
 };
@@ -257,4 +258,27 @@ void AddressBookService::viewByCityAndState() {
     }
     else
         cout << "No Records!!!" << endl;    
+}
+
+void AddressBookService::searchByCityOrState() {
+    int choice;
+    string city, state;
+
+    cout << "Search Records By:\n1. City\n2. State\nEnter Your Choice" << endl;
+    cin >> choice;
+
+    switch(choice) {
+        case 1:
+            cout << "Enter City Name: " << endl;
+            cin >> city;
+
+            for(Person person: personList) {
+                if(city == person.getCity()) {
+                    person.display();
+                }
+            }
+            break;
+        default:
+            cout << "Enter Valid Choice" << endl;
+    }
 }
