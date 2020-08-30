@@ -13,6 +13,7 @@ class AddressBookService
         void editRecord();
         void deleteRecord();
         void sortRecords();
+        void viewByCityAndState();
         Person readInputsForAdd(); 
         bool checkExists(string fname, string lname);
 };
@@ -237,4 +238,23 @@ void AddressBookService::sortRecords() {
                 cout << "Enter Valid Choice\n";
         }
     }
+}
+
+void AddressBookService::viewByCityAndState() {
+    string city, state;
+
+    cout << "Enter State" << endl;
+    cin >> state;
+    cout << "Enter City" << endl;
+    cin >> city;
+
+    if(personList.size() != 0) {
+        for(Person person: personList) {
+            if(city == person.getCity() && state == person.getState()) {
+                person.display();
+            }
+        }
+    }
+    else
+        cout << "No Records!!!" << endl;    
 }
