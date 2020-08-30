@@ -167,15 +167,74 @@ void AddressBookService::deleteRecord() {
     }
 }
 
-void AddressBookService::sortRecords() {
+int createSortMenu() {
+    int choice;
 
-    for(int i = 0; i < personList.size() - 1; i++) {
-        for(int j = i + 1; j < (personList.size()); j++) {
-            if(personList[i].getFirstName() > personList[j].getFirstName()) {
-                swap(personList[i], personList[j]);
-            }
+    cout << "Sort By" << endl;
+    cout << "1. Name\n2. City\n3. State\n4. Zip\n5. back\n" << endl;
+    cout << "Enter You Choice: ";
+    cin >> choice;
+
+    return choice;
+}
+
+void AddressBookService::sortRecords() {  
+    int flag = 0;
+
+    while(flag == 0) {
+        int choice = createSortMenu();
+
+        switch(choice) {
+            case 1: 
+                for(int i = 0; i < personList.size() - 1; i++) {
+                    for(int j = i + 1; j < (personList.size()); j++) {
+                        if(personList[i].getFirstName() > personList[j].getFirstName()) {
+                            swap(personList[i], personList[j]);
+                        }
+                    }
+                }
+                displayRecord();
+                break;
+
+            case 2: 
+                for(int i = 0; i < personList.size() - 1; i++) {
+                    for(int j = i + 1; j < (personList.size()); j++) {
+                        if(personList[i].getCity() > personList[j].getCity()) {
+                            swap(personList[i], personList[j]);
+                        }
+                    }
+                }
+                displayRecord();
+                break;
+
+            case 3: 
+                for(int i = 0; i < personList.size() - 1; i++) {
+                    for(int j = i + 1; j < (personList.size()); j++) {
+                        if(personList[i].getState() > personList[j].getState()) {
+                            swap(personList[i], personList[j]);
+                        }
+                    }
+                }
+                displayRecord();
+                break;
+
+            case 4: 
+                for(int i = 0; i < personList.size() - 1; i++) {
+                    for(int j = i + 1; j < (personList.size()); j++) {
+                        if(personList[i].getZip() > personList[j].getZip()) {
+                            swap(personList[i], personList[j]);
+                        }
+                    }
+                } 
+                displayRecord();
+                break;
+
+            case 5:
+                flag = 1;
+                break;
+                
+            default:
+                cout << "Enter Valid Choice\n";
         }
     }
-
-    displayRecord();
 }

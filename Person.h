@@ -17,6 +17,9 @@ class Person {
 
         string getFirstName();
         string getLastName();
+        string getCity();
+        string getState();
+        string getZip();
 };
 
 Person::Person(string fName, string lName, string address, string city, string state, string zip, string phone) {
@@ -61,4 +64,16 @@ string Person::getFirstName() {
 
 string Person::getLastName() {
     return this->lastName;
+}
+
+string Person::getCity() {
+    return this->city;
+}
+
+string Person::getState() {
+    return this->state;
+}
+
+string Person::getZip() {
+    return this->zip;
 }
